@@ -6,12 +6,12 @@ router.get('/new', (req, res) => {
     res.render('articles/new', { article: {} });
 });
 
-router.get('/:id', async (req, res) => {
-    
+router.get('/:id', (req, res) => {
+    res.send(req.params.id)
 })
 
 router.post('/', async (req, res) => {
-    const article = new Article({
+    let article = new Article({
         title: req.body.title,
         description: req.body.description,
         markdown: req.body.markdown
@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
         res.redirect(`/articles/${article.id}`)
     }
     catch (e) {
+        console.log(e)
         res.render('articles/new', { article: article })
     }
 })
