@@ -15,6 +15,9 @@
         <a href="/" class="btn btn-secondary">All Articles</a>
         <a href="/articles/<%= article.id %>/edit" class="btn btn-info">Edit</a>
         <div class="mb-2">
+            <% if (article.image ) { %>
+                <img src="<%= article.image %>" alt="<%= article.title %>" class="img-fluid mb-2">
+            <% } %>
             <%- article.sanitizedHtml %>
         </div>
     </div>
