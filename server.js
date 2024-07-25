@@ -21,6 +21,7 @@ const port = 3000;
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
+app.use(express.static('public'));
 
 app.get('/', async (req, res) => {
   const articles = await Article.find().sort({ createdAt: 'desc' });
