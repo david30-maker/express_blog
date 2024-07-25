@@ -28,13 +28,19 @@ router.get('/:slug', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', upload.single('images'), async (req, res, next) => {
     req.article = new Article();
+    if (req.file) {
+        req.article.image = `/uploads/${req.filename}`;
+    }
     next();
 }, saveArticleAndRedirect('new'));
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', upload.single('image'), async (req, res, next) => {
     req.article = await Article.findById(req.params.id);
+    if (req.file) {
+        req.article.image = `/uploads/${req.filename}`;
+    }
     next();
 }, saveArticleAndRedirect('edit'));
 
