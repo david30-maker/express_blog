@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { marked } = require('marked'); // Ensure correct import
+const { marked } = require('marked');
 const slugify = require('slugify');
 const createDomPurify = require('dompurify');
 const { JSDOM } = require('jsdom');
@@ -16,6 +16,9 @@ const articleSchema = new mongoose.Schema({
     markdown: {
         type: String,
         required: true,
+    },
+    image: {
+        type: String,
     },
     createdAt: {
         type: Date,
